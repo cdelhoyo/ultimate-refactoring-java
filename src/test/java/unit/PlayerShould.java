@@ -1,7 +1,7 @@
 package unit;
 
-import constructorFusion.Player;
-import constructorFusion.Role;
+import signatureChange.Player;
+import signatureChange.Role;
 import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

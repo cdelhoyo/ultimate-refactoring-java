@@ -13,14 +13,14 @@ Refactoring workshop notes:
           - parallel implementation and manual replacement of callers
           - parallel implementation + inline method
           - wrap return object
-   - constructorFusion:
-      - the default constructor is not allowed
-      - the score is no longer valid as a constructor argument
+       - Player constructors
 - moveResponsibility:
        - God class
             1 - use extract delegate to move them to a new class
             2 - add pameter + make static + convert to instance
-            3 - create class depencency + move + encapsulate field + inline
+            3 - create class depencency + move + encapsulate field +
+             inline
+            4 - pull down
        - InvoiceService - feature envy:
             1 - make static + move + convert to instance
             2 - extract parameter + move

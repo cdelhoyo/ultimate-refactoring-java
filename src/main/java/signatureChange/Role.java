@@ -1,4 +1,4 @@
-package constructorFusion;
+package signatureChange;
 
 public enum Role {
     Dragon,
