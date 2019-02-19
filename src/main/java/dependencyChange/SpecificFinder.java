@@ -3,13 +3,15 @@ package dependencyChange;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SpecificFinder extends Finder {
+public class SpecificFinder {
+
+    private final Finder finder;
 
     public SpecificFinder(UserRepository repository) {
-        super(repository);
+        finder = new Finder(repository);
     }
 
     public Set<User> findUnique(String query){
-        return new HashSet<>(find(query));
+        return new HashSet<>(finder.find(query));
     }
 }
