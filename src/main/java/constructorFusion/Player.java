@@ -11,12 +11,6 @@ public class Player {
         this.score = 0;
     }
 
-    public Player(Role role, String name, int score){
-        this.role = role;
-        this.name = name;
-        this.score = score;
-    }
-
     public void play(){
         if (role == Role.Dragon){
             score += 20;
