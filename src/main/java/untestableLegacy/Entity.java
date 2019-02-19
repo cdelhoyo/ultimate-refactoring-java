@@ -5,6 +5,12 @@ package untestableLegacy;
  * https://code.openbravo.com/erp/stable/2.50-bp/file/cec9b1da72ed/src/org/openbravo/base/model/Entity.java
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 class Log{
 	public void warn(String msg){
 		System.out.println(msg);
@@ -12,34 +18,29 @@ class Log{
 }
 
 public class Entity {
-	private static final char[] ILLEGAL_ENTITY_NAME_CHARS = new char[]{'*', '?'};
+	private static final List<Character> ILLEGAL_ENTITY_NAME_CHARS = Arrays.asList('*', '?');
 	private String name;
-	public Log log = new Log();
+	public final Log log;
+
+	public Entity(Log log){
+		this.log = log;
+	}
 	
 	public void setName(String name) {
 	    // repair the name if it contains any illegal character
 	    this.name = removeIllegalChars(name);
 	  }
 
-	  private String removeIllegalChars(String fromName) {
-	    final char[] chars = fromName.toCharArray();
-	    final StringBuilder newName = new StringBuilder();
-	    boolean nameChanged = false;
-	    for (char c : chars) {
-	      boolean hasIllegalChar = false;
-	      for (char illegalChar : ILLEGAL_ENTITY_NAME_CHARS) {
-	        if (c == illegalChar) {
-	          hasIllegalChar = true;
-	          break;
-	        }
-	      }
-	      if (hasIllegalChar) {
-	        nameChanged = true;
-	        continue;
-	      }
-	      newName.append(c);
-	    }
-	    if (nameChanged) {
+	  protected String removeIllegalChars(String fromName) {
+		  final List<Character> chars = convertStringToCharacterList(fromName);
+
+		  String newName = chars.stream()
+			.filter(character -> !ILLEGAL_ENTITY_NAME_CHARS.contains(character))
+			.map(character -> character.toString())
+			.collect(Collectors.joining(""));
+
+		  boolean namedChanged = !fromName.equals(newName);
+		  if (namedChanged) {
 	      log.warn("The entity name " + fromName
 	          + " contains illegal characters, it has been repaired to " + newName);
 	    } else {
@@ -54,8 +55,16 @@ public class Entity {
 	        }
 	      }
 	    }
-	    return newName.toString();
+	    return newName;
 	  }
+
+	private List<Character> convertStringToCharacterList(String fromName) {
+		final List<Character> chars = new ArrayList();
+		for(char c : fromName.toCharArray()) {
+			chars.add(c);
+		}
+		return chars;
+	}
 
 
 }
