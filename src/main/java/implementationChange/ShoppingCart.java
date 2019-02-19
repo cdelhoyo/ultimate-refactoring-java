@@ -1,18 +1,18 @@
 package implementationChange;
 
 public class ShoppingCart {
-    private int price;
+    private Price price;
 
-    public void add(int price) {
+    public void add(Price price) {
         this.price = price;
     }
 
-    public int calculateTotalPrice() {
+    public Price calculateTotalPrice() {
         return price;
     }
 
     public boolean hasDiscount() {
-        return price >= 100;
+        return price.getPrice() >= 100;
     }
 
     public int numberOfProducts() {
