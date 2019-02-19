@@ -24,6 +24,7 @@ Intro concepts:
       - 10 minutes refactoring per day. Warm up with a refactoring kata
 
 - Approaches:
+   - ROI
    - Plan for the strategy first
    - Mikado method approach
    - Baby steps, always on green. Do not lean on the compiler
