@@ -31,7 +31,7 @@ public class FinderShould {
     @Test
     public void avoid_duplicates() throws Exception {
         UserRepository repository = new UserRepository();
-        SpecificFinder finder = new SpecificFinder(repository);
+        SpecificFinder finder = new SpecificFinder(new Finder(repository));
 
         assertThat(
                 finder.findUnique("").size())

@@ -7,8 +7,8 @@ public class SpecificFinder {
 
     private final Finder finder;
 
-    public SpecificFinder(UserRepository repository) {
-        finder = new Finder(repository);
+    public SpecificFinder(Finder finder) {
+        this.finder = finder;
     }
 
     public Set<User> findUnique(String query){
