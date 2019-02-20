@@ -3,8 +3,8 @@ package safeUnwrap;
 public class Consumer {
 
     public String getColor(Model model){
-        Wrapper wrapper = new Wrapper(model);
+        Model wrapper = model;
 
-        return wrapper.getWrapped().getColor();
+        return wrapper.getColor();
     }
 }
