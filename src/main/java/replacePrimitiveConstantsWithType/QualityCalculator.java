@@ -1,36 +1,34 @@
 package replacePrimitiveConstantsWithType;
 
-import java.util.Objects;
-
 public class QualityCalculator {
     private int score = 0;
 
-    public void rateLocation(String quality){
-        if (Objects.equals(quality, Quality.Excellent)){
+    public void rateLocation(Quality quality){
+        if (quality.isExcellent()){
             score += 10;
         }
-        if (Objects.equals(quality, Quality.Good)){
+        if (quality.isGood()){
             score += 7;
         }
-        if (Objects.equals(quality, Quality.Bad)){
+        if (quality.isBad()){
             score -= 2;
         }
-        if (Objects.equals(quality, Quality.Terrible)){
+        if (quality.isTerrible()){
             score -= 10;
         }
     }
 
-    public void rateFacilities(String quality){
-        if (Objects.equals(quality, Quality.Excellent)){
+    public void rateFacilities(Quality quality){
+        if (quality.isExcellent()){
             score += 2;
         }
-        if (Objects.equals(quality, Quality.Good)){
+        if (quality.isGood()){
             score += 1;
         }
-        if (Objects.equals(quality, Quality.Bad)){
+        if (quality.isBad()){
             score -= 1;
         }
-        if (Objects.equals(quality, Quality.Terrible)){
+        if (quality.isTerrible()){
             score -= 2;
         }
     }
