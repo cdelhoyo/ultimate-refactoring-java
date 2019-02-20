@@ -7,10 +7,11 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.*;
 
-public class EntityTest {
+public class FormatNameServiceTest {
 
     private Log log = mock(Log.class);
-    private Entity sut = new Entity(log);
+    private StringToCharConverter stringToCharConverter = new StringToCharConverter();
+    private FormatNameService sut = new FormatNameService(log, stringToCharConverter);
 
     @Test
     public void removeIllegalCharsShouldRemoveQuestion() {
@@ -40,6 +41,18 @@ public class EntityTest {
         verify(log).warn(contains("contains a character (/)"));
         verify(log, times(0)).warn(contains("contains illegal characters"));
         assertThat(withOutQuestion, equalTo("sdfdsfs/dasd"));
+    }
+
+    @Test
+    public void removeIllegalCharsShouldLogNtimesIfHasExtrangeCharAndNotRemoveIt() {
+        String withOutQuestion = sut.removeIllegalChars("sdf&$dsfs/ dasd");
+
+        verify(log).warn(contains("contains a character (/)"));
+        verify(log).warn(contains("contains a character (&)"));
+        verify(log).warn(contains("contains a character ($)"));
+        verify(log).warn(contains("contains a character ( )"));
+        verify(log, times(0)).warn(contains("contains illegal characters"));
+        assertThat(withOutQuestion, equalTo("sdf&$dsfs/ dasd"));
     }
 
     @Test
